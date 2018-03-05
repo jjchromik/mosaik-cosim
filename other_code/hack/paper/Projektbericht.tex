@@ -1,0 +1,53 @@
+2. Abschnitt I: leiten Sie Related Work kurz in Ihrer Einleitung ein.
+
+6. Figure 3: Erklären Sie genauer in Abschnitt III, was in Figure 3 zu sehen ist und beziehen Sie sich im Text darauf. (Wenn möglich auch auf Seite 3 unten platzieren.)
+11. V-A: Beziehen Sie sich mehr auf Figure 4 und Figure 6.
+12. V-B ist noch etwas knapp. Gehen Sie noch einmal auf die allgemeine Zielstellung ein und fassen Sie die Ergebnisse zusammen.
+
+3. II-B: Erklären Sie, was die Farben in Figure 2 bedeuten oder fügen Sie eine Legende ein.
+4. Figure 2: Können Sie per Hand einzeichnen, wo die RTUs platziert sind?
+5. III: Was ist und macht Mosaik und wie ist es aufgebaut?
+
+\section{Introduction}
+
+	Power grids are controlled through a central based Supervisory Control and Data Acquisition (SCADA) network \cite{chromik1}. It provides the functionality to monitor the system and send commands to remote units to control power flow. Due to rising complexity and non-linear power flow, control and intrusion detection are way to extensive to be done on a global level. To tackle this problem, decentralising intrusion detection and control mechanisms can lead to a more stable, safer and securer network. This approach will be explored in this report. To achieve this, Remote Terminal Units (RTU) are being located at key nodes where several branches run together. Therefore, the whole grid is controlled and stable if every RTU ensures stability at their own location. The downside of having several RTUs is that new attack possibilities arise, e.g. cyber-attacks used against Ukranian power grids \cite{icscert}. To make RTUs more stable, a local intrusion detections system (IDS) is used at every RTU to enable the RTU to control the power lines, supervised by the RTU, based on the physical values read by the RTU's sensors. To prevent manipulated sensor information leading to an insecure state, the IDS also validates sensor values with a behaviour specification based approach inspired rules based on physical information proposed by \cite{chromik1} and \cite{blithe}. \\
+	With the help of the smart grid co-simulation framework mosaik the performance of our IDS is tested by running several types of attack scenarios on several type of smart grids. The process of testing is made easier by our script interpreter, topology loader and improvements to the web visualisation provided by mosaik. The script interpreter enables us to create complex attack scenarios while the topology loader provides a convenient way to switch between different smart grid topologies. This report contains the following sections. Section 2 introduces smart grid topologies for the simulation. Section 3 details which features we added to the simulation. Section 4 illustrates possible attack types on our smart grid simulation. Section 5 contains test results, their conclusion and ideas for future work.
+
+\section{The scenario}
+	
+	\subsection{Overview}
+
+		To simulate a smart grid with MOSAIK, a topology is needed. Several topologies are introduced that can be used to test the IDS efficiency in various situations.
+
+\section{Implementation in MOSAIK}
+
+	\subsection{Overview}
+
+		The diagram \ref{diag:overview} shows the overall structure of the simulation and how the individual packages and classes work together.
+		The following features were implemented by us. A topology loader for easier switching between scenarios, simulations for every RTU that can communicate with each other, an IDS that is used by the RTUs, improvements to the web visualisation for easier scenario testing, tools for trusted operators and a hacker client to either manually carry out attacks or to execute attack scripts. These features are used for either the simulation itself or for tests concerning the IDS safety.
+
+\section{Attack scenarios}
+
+	\subsection{Overview}
+
+		To test the IDS in a variation of situations we introduce several types of attacks, offering multiple approaches.
+
+
+\subsection{Intrusion Detection System}
+		
+		The IDS is based on the requirements and physical laws suggested in \cite{chromik1}. \\
+		RTUs use R2 and R4 as defined in \cite{chromik1} to regulate the smart grid state of the branches monitored by itself. R2 is the rule that power lines have a max current that is not to be exceeded and R4 requires that if the current of a branch exceeds a cut-off current a second branch, if existing, is opened. As we do not know if commands are trusted, commands are prevented from being executed if R2 or R4 are not violated. To validate sensor values we use a behaviour specification based IDS as suggested in \cite{chromik2} as it can deal with unknown attacks and yields a low false negative rate. Our basis are internal trust values (ITV) assigned to each sensor. If an ITV surpasses a cut-off value we mark a sensor as untrusted. The RTU broadcasts to other RTUs if a sensor was marked as untrustworthy. Untrusted sensors will be ignored until an operator resets the trust. Inspired by \cite{blithe} we check for voltage angle and voltage magnitude at nodes, current at lines that the margin of values of two successive steps do not exceed a cut-off value. If the cut-off value is exceeded we increase the ITV to it's cut-off value. As advised in \cite{blithe} the cut-off principle is implemented for the voltage angle margin between adjacent RTUs. As suggested in \cite{blithe} warnings and great-warnings are given if a margin reaches a percentage of the cut-off value. Warnings and great-warnings increase the ITV in amounts smaller than the cut-off value. This prevents single outliers to lead to marking sensors as untrustworthy. Warnings allow several, smaller outliers while great-warnings allow for less, bigger outliers. To increase adaptability to different smart grids cut-off values and the standard increases to the ITV are easily modifiable. In combination with the ITV, RTUs check R1 and P1 as defined in \cite{chromik1} to validate sensor data. If R1 or P1 are breached by a sensor it's ITV are increased. R1 demands that the voltage on all lines stays within the boundaries 230V +-10\% in low voltage areas. In our simulation we used 10000V as we simulate a middle voltage area. \\
+		A notable point about P1, known as Kirchhoff's Law, is the way how it is calculated.
+		For example, if there is a node with four branches connected, two leading into and two leading out of the node, the formula for Kirchhoff's Law looks like this presuming the combination of branches is the valid one:
+		\begin{equation}
+		(I_a + I_b) - (I_c + I_d) = 0
+		\label{eq:klaw}
+		\end{equation}
+		I_c and I_d are the currents of the two branches leading into the node andI_a and I_b are the currents leading out of the node.
+		To change the values without violating Kirchhoff's Law, this constraint has to be met:
+		\begin{equation}
+		\delta I_a + \delta I_b = \delta I_c + \delta I_d
+		\end{equation}
+		It assures that the equation \ref{eq:klaw} stays true. Because we do not know the flow direction of the current, the only way to get an equation like \ref{eq:klaw} is by trial and error. This is done by checking which combination of signs yields the sum closest to zero. If there is no value close to zero, P1 is violated. The reason why we check for the sum to be only close to zero and not equal is that we are missing the data of PVs and households to consider in the calculations. \\
+		For every branch exists a sensor which means that several sensors are on the same node and belong to the same RTU. RTUs check if every sensor at a node reads the same value. If they do not share the same value we mark every sensor at the node as untrusted. As suggested by Prof. Remke, we also added the possibility to use majority rule instead. Our system yields a higher false positive rate if a minority of sensors is attacked while the majority rule yields a higher false negative rate if the majority of sensors is attacked. \\
+		Considering this and the adaptability for different smart grids, our IDS design allows to easily switch off or swap out features.

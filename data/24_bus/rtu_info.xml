@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<DVCD label="Local substation">
+    <ip>192.168.33.1</ip>
+    <port>10502</port>
+    <identity>
+        <vendor name="UTwente" url="https://www.utwente.nl" />
+        <product name="PoorSecuritySubstation" code="PSS" model="PSS 1.0" />
+        <version major="0" minor="5" />
+    </identity>
+
+    <reg type="co" index="0" label="switch_1-branch_19" dt="bool">True</reg>
+
+    <code>mosaikrtu/conf/rtu_logic_good.py</code>
+</DVCD>

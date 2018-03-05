@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<DVCD label="Local substation">
+    <ip>localhost</ip>
+    <port>12503</port>
+    <identity>
+        <vendor name="UTwente" url="https://www.utwente.nl" />
+        <product name="PoorSecuritySubstation" code="PSS" model="PSS 1.0" />
+        <version major="0" minor="5" />
+    </identity>
+    <!--   
+     Switches and sensors need unique enumerations. 
+     Make a comment for every RTU to keep track of used numbers and for readability!
+    -->
+    <!-- 
+    RTU 2:
+    switches: 7-8 und 21
+    node sensors: 7-8 und 21
+    branch sensors: 7-8 21
+    -->
+	
+    <reg type="hr" index="0" trusted="True" label="switch_21-branch_2">1.0</reg>
+    <reg type="hr" index="1" trusted="True" label="switch_7-branch_3">1.0</reg>
+    <reg type="hr" index="2" trusted="True" label="switch_8-branch_8">1.0</reg>
+	
+    <reg type="hr" index="3" trusted="True" label="sensor_21-node_b2">1.0</reg>
+    <reg type="hr" index="4" trusted="True" label="sensor_7-node_b2">1.0</reg>
+    <reg type="hr" index="5" trusted="True" label="sensor_8-node_b2">1.0</reg>
+	
+    <reg type="hr" index="6" trusted="True" label="sensor_21-branch_2">0</reg>
+    <reg type="hr" index="7" trusted="True" label="sensor_7-branch_3">0</reg>
+    <reg type="hr" index="8" trusted="True" label="sensor_8-branch_8">0</reg>
+    
+    <reg type="hr" index="9" trusted="True" label="max-branch_2">100.0</reg>
+    <reg type="hr" index="10" trusted="True" label="max-branch_3">100.0</reg>
+    <reg type="hr" index="11" trusted="True" label="max-branch_8">100.0</reg>
+
+    <code>mosaikrtu/conf/rtu_logic_good.py</code>
+</DVCD>

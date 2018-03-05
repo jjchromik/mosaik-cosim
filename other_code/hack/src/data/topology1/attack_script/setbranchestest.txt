@@ -1,0 +1,4 @@
+connect 12504
+listbranches
+wait 0.5
+setbranches 2, 3

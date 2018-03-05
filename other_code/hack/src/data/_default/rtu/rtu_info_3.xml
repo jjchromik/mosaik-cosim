@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<DVCD label="Local substation">
+    <ip>localhost</ip>
+    <port>12504</port>
+    <identity>
+        <vendor name="UTwente" url="https://www.utwente.nl" />
+        <product name="PoorSecuritySubstation" code="PSS" model="PSS 1.0" />
+        <version major="0" minor="5" />
+    </identity>
+    <!--   
+     Switches and sensors need unique enumerations. 
+     Make a comment for every RTU to keep track of used numbers and for readability!
+    -->
+	<!-- 
+    RTU 3: 
+    switches: 8-13, 
+    node sensors: 8-13, 
+    branch sensors: 8-13
+    -->
+	<reg type="hr" index="0" trusted="True" label="switch_8-branch_6">1.0</reg>
+    <reg type="hr" index="1" trusted="True" label="switch_9-branch_6a">0.0</reg>
+    <reg type="hr" index="2" trusted="True" label="switch_10-branch_13">1.0</reg>
+	<reg type="hr" index="3" trusted="True" label="switch_11-branch_18">1.0</reg>
+    <reg type="hr" index="4" trusted="True" label="switch_12-branch_19">1.0</reg>
+    <reg type="hr" index="5" trusted="True" label="switch_13-branch_20">1.0</reg>
+	
+    <reg type="hr" index="6" trusted="True" label="sensor_8-node_b4">1.0</reg>
+    <reg type="hr" index="7" trusted="True" label="sensor_9-node_b4">1.0</reg>
+    <reg type="hr" index="8" trusted="True" label="sensor_10-node_b4">1.0</reg>
+	<reg type="hr" index="9" trusted="True" label="sensor_11-node_b4">1.0</reg>
+    <reg type="hr" index="10" trusted="True" label="sensor_12-node_b4">1.0</reg>
+    <reg type="hr" index="11" trusted="True" label="sensor_13-node_b4">1.0</reg>
+
+    <reg type="hr" index="12" trusted="True" label="sensor_8-branch_6">0</reg>
+    <reg type="hr" index="13" trusted="True" label="sensor_9-branch_6a">0</reg>
+    <reg type="hr" index="14" trusted="True" label="sensor_10-branch_13">0</reg>
+	<reg type="hr" index="15" trusted="True" label="sensor_11-branch_18">0</reg>
+    <reg type="hr" index="16" trusted="True" label="sensor_12-branch_19">0</reg>
+    <reg type="hr" index="17" trusted="True" label="sensor_13-branch_20">0</reg>
+	
+    <reg type="hr" index="18" trusted="True" label="max-branch_6">100.0</reg>
+    <reg type="hr" index="19" trusted="True" label="max-branch_6a">100.0</reg>
+    <reg type="hr" index="20" trusted="True" label="max-branch_13">100.0</reg>
+	<reg type="hr" index="21" trusted="True" label="max-branch_18">100.0</reg>
+    <reg type="hr" index="22" trusted="True" label="max-branch_19">100.0</reg>
+    <reg type="hr" index="23" trusted="True" label="max-branch_20">100.0</reg>
+</DVCD>

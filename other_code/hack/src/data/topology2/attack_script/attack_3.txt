@@ -1,0 +1,9 @@
+for i in 1 to 10
+    connect random get listservers False
+    setswitch random get listbranches, 0
+    wait 1
+    if random 0 10 > 5
+        setsensor random get listbranches, random 0 i*3
+    ifEnd
+    wait 1
+forEnd

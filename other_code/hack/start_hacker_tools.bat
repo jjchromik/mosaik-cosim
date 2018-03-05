@@ -1,0 +1,11 @@
+@echo off
+cd ..
+cd mosaik
+cd Scripts
+call activate
+cd ..
+cd ..
+cd Stromnetze
+cd src
+python hacker_tools.py
+cmd /k

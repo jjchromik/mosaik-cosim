@@ -1,0 +1,23 @@
+connect 12502
+for i in 0 to 1000
+    set a get sensordata of getstate branch_2 False
+    wait 0.1
+    set b get sensordata of getstate branch_9 False
+    wait 0.1
+    set c get sensordata of getstate branch_16 False
+    wait 0.1
+    set d get sensordata of getstate branch_23 False
+    wait 0.1
+    set e get sensordata of getstate branch_30 False
+    wait 0.1
+    setsensor branch_2, a*1.1
+    wait 0.1
+    setsensor branch_9, b*1.1
+    wait 0.1
+    setsensor branch_16, c*1.1
+    wait 0.1
+    setsensor branch_23, d*1.1
+    wait 0.1
+    setsensor branch_30, e*1.1
+    wait 0.1
+forEnd

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<DVCD label="Local substation">
+    <ip>localhost</ip>
+    <port>12506</port>
+    <identity>
+        <vendor name="UTwente" url="https://www.utwente.nl" />
+        <product name="PoorSecuritySubstation" code="PSS" model="PSS 1.0" />
+        <version major="0" minor="5" />
+    </identity>
+    <!--   
+     Switches and sensors need unique enumerations. 
+     Make a comment for every RTU to keep track of used numbers and for readability!
+    -->
+	<!-- 
+    RTU 5:
+    switches: 18-20,
+    node sensors: 18-20,
+    branch sensors: 18-20
+    -->
+	<reg type="hr" index="0" trusted="True" label="switch_18-branch_5">1.0</reg>
+    <reg type="hr" index="1" trusted="True" label="switch_19-branch_23">1.0</reg>
+    <reg type="hr" index="2" trusted="True" label="switch_20-branch_24">1.0</reg>
+	
+    <reg type="hr" index="3" trusted="True" label="sensor_18-node_b3">1.0</reg>
+    <reg type="hr" index="4" trusted="True" label="sensor_19-node_b3">1.0</reg>
+    <reg type="hr" index="5" trusted="True" label="sensor_20-node_b3">1.0</reg>
+
+    <reg type="hr" index="6" trusted="True" label="sensor_18-branch_5">0</reg>
+    <reg type="hr" index="7" trusted="True" label="sensor_19-branch_23">0</reg>
+    <reg type="hr" index="8" trusted="True" label="sensor_20-branch_24">0</reg>
+	
+    <reg type="hr" index="9" trusted="True" label="max-branch_5">100.0</reg>
+    <reg type="hr" index="10" trusted="True" label="max-branch_23">100.0</reg>
+    <reg type="hr" index="11" trusted="True" label="max-branch_24">100.0</reg>
+</DVCD>

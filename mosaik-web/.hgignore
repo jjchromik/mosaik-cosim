@@ -1,0 +1,13 @@
+syntax: glob
+
+*.egg-info/
+*.pyc
+*.ropeproject
+*~
+.DS_Store
+.cache/
+.tox/
+MANIFEST
+build/
+dist/
+docs/_build/

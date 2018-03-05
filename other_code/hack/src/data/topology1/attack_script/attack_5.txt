@@ -1,0 +1,10 @@
+connect random get listservers
+set l len get listbranches
+for b in get listbranches
+# check if count is even
+    if l%2 == 0
+        setswitch b, 0
+    else
+        setswitch b, 1
+    ifEnd
+forEnd

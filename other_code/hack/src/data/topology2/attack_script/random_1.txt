@@ -1,0 +1,16 @@
+connect 12502
+set b random get listbranches
+for i in 0 to 80
+    setsensor branch_6, random 0 i/4
+    wait 0.1
+    for j in 2 to 6
+        set k random 0-j j
+        setsensor b, 100-(i+k)
+        wait 0.1
+    forEnd
+    if get switchstate of getstate branch_6a False == 1
+        setswitch branch_6a, 0
+    else
+        setswitch branch_6a, 1
+    ifEnd
+forEnd

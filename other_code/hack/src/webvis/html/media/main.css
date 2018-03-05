@@ -1,0 +1,103 @@
+text {
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+#progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 20px;
+    background-color: hsl(297, 90%, 50%);
+    z-index: 100;
+}
+
+#canvas {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+
+/* Topology items */
+
+.node {
+    stroke: #777;
+    stroke-width: 6px;
+    fill: #ddd;
+}
+
+.pqbus {}
+
+.refbus {
+    stroke: #333;
+}
+
+.load {
+    stroke: hsl(197, 50%, 36%);
+    stroke: #2A718C;
+}
+
+.gen {
+    stroke: hsl(84, 50%, 35%);
+}
+
+.storage {
+    stroke: hsl(288, 50%, 48%);
+}
+
+.special {
+    stroke: hsl(32, 50%, 36%);
+}
+
+.highlight {
+    stroke: hsl(45, 100%, 40%);
+}
+
+.nodeattack {
+    stroke: hsl(0, 100%, 50%);
+}
+
+.nodefix {
+    stroke: hsl(95, 100%, 55%);
+}
+
+.link {
+    stroke: #777;
+    stroke-width: 2px;
+}
+
+.linkattack {
+    stroke: hsl(0, 100%, 50%);
+    stroke-width: 4px;
+}
+
+.linkfix {
+    stroke: hsl(95, 100%, 55%);
+    stroke-width: 4px;
+}
+
+
+/* Timeline items */
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #333;
+    shape-rendering: crispEdges;
+}
+
+.line {
+    fill: none;
+    stroke: #333;
+    stroke-width: 2px;
+}
+
+.label {
+    font-weight: 400;
+}

@@ -1,0 +1,13 @@
+@echo off
+cd ..
+cd ..
+cd ..
+cd mosaik
+cd Scripts
+call activate
+cd ..
+cd ..
+cd Stromnetze
+cd src
+python demo_vuln.py
+cmd /k

@@ -1,0 +1,7 @@
+connect random get listservers False
+set b random get listbranches False
+set v get sensordata of getstate b False
+for i in 0 to 1000
+    setsensor b, v+i
+    wait 0.5
+forEnd
