@@ -8,3 +8,6 @@ MANIFEST
 dist/*
 docs/_build/*
 htmlcov/*
+readings.csv
+times.csv
+
