@@ -81,9 +81,9 @@ def main():
     global RTU_STATS_OUTPUT
     RTU_STATS_OUTPUT = conf['rtu_stats_output']
     global RECORD_TIMES
-    RECORD_TIMES = 1  # TODO read it from GUI
+    RECORD_TIMES = conf['recordtimes']  # TODO read it from GUI
 
-    if RECORD_TIMES == 1 :
+    if RECORD_TIMES :
         try:
             os.remove('./outputs/times.csv')
         except OSError:

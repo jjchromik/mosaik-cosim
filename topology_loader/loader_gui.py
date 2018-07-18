@@ -40,6 +40,11 @@ class loader_gui(tk.Frame):
         self.check_get_stats = tk.Checkbutton(self, variable=self.check_stats_selection)
         self.check_get_stats["text"] = "Output RTU sensor stats."
         self.check_get_stats.grid(row=3, column=0)
+
+        self.check_times_selection = tk.IntVar()
+        self.check_get_times = tk.Checkbutton(self, variable=self.check_times_selection)
+        self.check_get_times["text"] = "Record the Mosaik event times."
+        self.check_get_times.grid(row=4, column=0)
         
         img = Image.open(os.path.join(os.getcwd(), "..", "data", "img", "welcome.png"))
         photoimage = ImageTk.PhotoImage(img)

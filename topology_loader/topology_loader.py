@@ -18,6 +18,7 @@ class topology_loader(threading.Thread):
         self.conf_file_name = "config.cfg"
         self.rt_factor = 0.0
         self.output_rtu_stats = None
+        self.recordtimes = 'False'
 
     def run(self):
         """
@@ -70,6 +71,7 @@ class topology_loader(threading.Thread):
             conf['attack_script'] = os.path.join(dir, conf['attack_script'])
             conf['rt_factor'] = self.rt_factor
             conf['rtu_stats_output'] = self.output_rtu_stats
+            conf['recordtimes'] = self.recordtimes
             if self.flag:
                 old_file = os.path.join(os.getcwd(), self.rootdir, self.jsonfile)
                 new_file = os.path.join(os.getcwd(), self.rootdir, dir, self.jsonfile)

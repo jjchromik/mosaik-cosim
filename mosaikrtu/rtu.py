@@ -10,13 +10,13 @@ from mosaikrtu import rtu_model
 import logging
 logger = logging.getLogger('demo_main')
 ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)
+ch.setLevel(logging.WARN)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 global RECORD_TIMES
-RECORD_TIMES = 1 
+RECORD_TIMES = 0
 
 try:
     os.remove('./outputs/readings.csv')

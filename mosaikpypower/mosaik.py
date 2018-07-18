@@ -10,10 +10,12 @@ import mosaik_api
 
 from mosaikpypower import model
 from datetime import datetime
+from topology_loader.topology_loader import topology_loader
 
 
-global RECORD_TIMES
-RECORD_TIMES = 1 
+
+# global RECORD_TIMES
+# RECORD_TIMES = 0
 
 logger = logging.getLogger('pypower.mosaik')
 
@@ -114,7 +116,10 @@ class PyPower(mosaik_api.Simulator):
         self.grideid = None  #self.eid = None
         self.sid=None
         self.rtu_info=None
-
+        topoloader = topology_loader()
+        conf = topoloader.get_config()
+        global RECORD_TIMES
+        RECORD_TIMES = conf['recordtimes'] 
 
         # In PYPOWER loads are positive numbers and feed-in is expressed via
         # negative numbers. "init()" will that this flag to "1" in this case.
