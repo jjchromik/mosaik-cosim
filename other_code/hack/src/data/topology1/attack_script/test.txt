@@ -1,5 +1,0 @@
-if random 0 10 > 5
-connect 12502
-else
-connect 12503
-ifEnd

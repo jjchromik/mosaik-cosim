@@ -1,4 +1,0 @@
-wairtandom
-for server in get listservers
-connect server
-waitrandom

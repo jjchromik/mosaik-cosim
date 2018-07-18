@@ -1,2 +1,0 @@
-time	I_real	d/dt
-0	0,0	0

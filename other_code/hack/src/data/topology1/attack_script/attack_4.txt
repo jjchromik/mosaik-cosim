@@ -1,5 +1,0 @@
-set peter random 0 1000
-set detlef random get listservers
-connect detlef
-set hannes random get listbranches
-setsensor hannes, peter

@@ -1,6 +1,0 @@
-connect 12502
-getstate branch_1
-setsensor branch_1, 0.123456789
-setswitch branch_1, 0
-wait 1
-getstate branch_1
