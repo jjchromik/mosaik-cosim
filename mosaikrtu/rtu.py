@@ -100,23 +100,20 @@ class MonitoringRTU(mosaik_api.Simulator):
     def step(self, time, inputs):
         commands = {}  # set commands for switches
         switchstates = {}
-        src = self.sid +'.'+ self.rtueid
+        src = self.sid +'.'+ self.rtueid # RTUSim-0.0-rtu%
         dest = 'PyPower-0.PyPower'
         commands[src] = {}
         commands[src][dest] = {}
 
         for s, v in self._cache.items():
-            if 'switch' in s:
+            if 'switch' in s or 'transformer' in s:
                 if self.data.get(v['reg_type'], v['index'], 1)[0] != v['value']: # TODO: operation on datablock!
-                    #print("New something related to switch: {}".format(v))
                     myCsvRow = "{};{};state;{}\n".format(format(datetime.now()),  v['reg_type']+str(v['index']), v['value'])
                     fd = open('readings.csv', 'a')
                     fd.write(myCsvRow)
                     fd.close()
                     self._cache[s]['value'] = self.data.get(v['reg_type'], v['index'], 1)[0]
                     switchstates[v['place']] = v['value']
-                    #logger.warning("Switch {} {} value changed to {} ".format(v['reg_type'], v['index'], v['value']))
-
 
         if bool(switchstates):
             if commands[src][dest] == {}:
@@ -136,7 +133,7 @@ class MonitoringRTU(mosaik_api.Simulator):
                             assert dev_id in self._cache
                             self._cache[dev_id]["value"] = value
                             #print(self.conf['registers'][dev_id][0])
-                            logger.warning("Sensor {} value changed to {} ".format(dev_id, value))
+                            # logger.warning("Sensor {} value changed to {} ".format(dev_id, value))
                             #print("Stuff in data.set: {} {} {} {}".format(self.conf['registers'][dev_id][0], self.conf['registers'][dev_id][1], value, self.conf['registers'][dev_id][2]))
                             self.data.set(self.conf['registers'][dev_id][0], self.conf['registers'][dev_id][1], value, self.conf['registers'][dev_id][2])
                             myCsvRow = "{};{};{};{}\n".format(format(datetime.now()), dev_id, attr, value)

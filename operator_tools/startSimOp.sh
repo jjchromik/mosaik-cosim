@@ -1,5 +1,5 @@
 #! /bin/bash
-source ~/.virtualenvs/mosaik/bin/activate
+source ~/.virtualenvs/mosaik_new/bin/activate
 
 cd ..
 

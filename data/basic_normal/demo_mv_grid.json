@@ -1,39 +1,42 @@
 {
-    "base_mva": 110,
     "branch": [
-        ["branch_1", "tr_sec", "node_b2", 1.0, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_6", "node_b2", "node_b4", 2.0, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_6a", "node_b2", "node_b4", 2.0, 0.2542, 0.080425, 0.0, 240.0, false],
-        ["branch_8", "node_b2", "node_b3", 0.4, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_9", "node_b3", "node_b6", 0.25, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_10", "node_b6", "node_b7", 0.2, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_11", "node_b7", "node_b8", 0.35, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_12", "node_b8", "node_b9", 0.2, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_13", "node_b9", "node_b4", 0.35, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_14", "node_b3", "node_b10", 0.35, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_15", "node_b10", "node_b11", 0.55, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_16", "node_b11", "node_b12", 0.65, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_17", "node_b12", "node_b13", 0.2, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_18", "node_b13", "node_b4", 0.35, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_19", "node_b4", "node_b5", 0.2, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_20", "node_b4", "node_b14", 0.2, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_21", "node_b14", "node_b15", 0.15, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_22", "node_b15", "node_b16", 0.2, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_23", "node_b16", "node_b17", 0.05, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_24", "node_b17", "node_b5", 0.2, 0.2542, 0.080425, 0.0, 240.0, true],     
-        ["branch_25", "node_b5", "node_b18", 0.15, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_26", "node_b18", "node_b19", 0.4, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_27", "node_b19", "node_b20", 0.1, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_28", "node_b20", "node_b21", 0.15, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_29", "node_b21", "node_b22", 0.35, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_30", "node_b22", "node_b23", 0.2, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_31", "node_b23", "node_b24", 0.1, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_32", "node_b24", "node_b25", 0.4, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_33", "node_b25", "node_b26", 0.2, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_34", "node_b26", "node_b27", 0.1, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_35", "node_b27", "node_b28", 0.4, 0.2542, 0.080425, 0.0, 240.0, true],
-        ["branch_36", "node_b28", "node_b5", 0.2, 0.2542, 0.080425, 0.0, 240.0, true]
+        ["branch_1", "tr_sec", "node_b2", "type_1", 1.0, true],
+        ["branch_6", "node_b2", "node_b4", "type_1", 2.0, true],
+        ["branch_6a", "node_b2", "node_b4", "type_1", 2.0, false],
+        ["branch_8", "node_b2", "node_b3", "type_1", 0.4, true],
+        ["branch_9", "node_b3", "node_b6", "type_1", 0.25, true],
+        ["branch_10", "node_b6", "node_b7", "type_1", 0.2, true],
+        ["branch_11", "node_b7", "node_b8", "type_1", 0.35, true],
+        ["branch_12", "node_b8", "node_b9", "type_1", 0.2, true],
+        ["branch_13", "node_b9", "node_b4", "type_1", 0.35, true],
+        ["branch_14", "node_b3", "node_b10", "type_1", 0.35, true],
+        ["branch_15", "node_b10", "node_b11", "type_1", 0.55, true],
+        ["branch_16", "node_b11", "node_b12", "type_1", 0.65, true],
+        ["branch_17", "node_b12", "node_b13", "type_1", 0.2, true],
+        ["branch_18", "node_b13", "node_b4", "type_1", 0.35, true],
+        ["branch_19", "node_b4", "node_b5", "type_1", 0.2, true],
+        ["branch_20", "node_b4", "node_b14", "type_1", 0.2, true],
+        ["branch_21", "node_b14", "node_b15", "type_1", 0.15, true],
+        ["branch_22", "node_b15", "node_b16", "type_1", 0.2, true],
+        ["branch_23", "node_b16", "node_b17", "type_1", 0.05, true],
+        ["branch_24", "node_b17", "node_b5", "type_1", 0.2, true],     
+        ["branch_25", "node_b5", "node_b18", "type_1", 0.15, true],
+        ["branch_26", "node_b18", "node_b19", "type_1", 0.4, true],
+        ["branch_27", "node_b19", "node_b20", "type_1", 0.1, true],
+        ["branch_28", "node_b20", "node_b21", "type_1", 0.15, true],
+        ["branch_29", "node_b21", "node_b22", "type_1", 0.35, true],
+        ["branch_30", "node_b22", "node_b23", "type_1", 0.2, true],
+        ["branch_31", "node_b23", "node_b24", "type_1", 0.1, true],
+        ["branch_32", "node_b24", "node_b25", "type_1", 0.4, true],
+        ["branch_33", "node_b25", "node_b26", "type_1", 0.2, true],
+        ["branch_34", "node_b26", "node_b27", "type_1", 0.1, true],
+        ["branch_35", "node_b27", "node_b28", "type_1", 0.4, true],
+        ["branch_36", "node_b28", "node_b5", "type_1", 0.2, true]
     ],
+    "branch_types": {
+      "type_1": [0.2542, 0.080425, 0.0, 240.0]
+   },
+
     "bus": [
         ["tr_pri", "REF", 110.0],         
         ["tr_sec", "PQ", 10.0],         
@@ -66,9 +69,9 @@
         ["node_b28", "PQ", 10.0]
     ],
     "trafo": [
-        ["transformer", "tr_pri", "tr_sec", 0.25, 4.2, 0.275, 6.9, 360.8]
+        ["transformer_1", "tr_pri", "tr_sec", "trafo_MV", true, 0] 
     ],
     "trafo_types": {
-        "trafo_MV": [23, 100, 800, 100, 0.0123, 1.234, {"-1": 0.9, "0": 1, "1": 1.1 }]
+        "trafo_MV": [0.25, 6.9, 360.8, 275, 0.0123, 1.234, {"49136": 1, "0": 1.05, "16368": 1.1 }]
     }
 }

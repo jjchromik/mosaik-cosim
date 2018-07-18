@@ -29,6 +29,12 @@
     <reg type="hr" index="40" label="max-branch_25" dt="64bit_float">0.5</reg>
     <reg type="hr" index="44" label="max-branch_36" dt="64bit_float">0.5</reg>
 
+    <reg type="hr" index="50" label="tap-transformer_1" dt="64bit_float">0</reg>
+    <!-- <reg type="hr" index="54" label="sensor-tr_pri" dt="64bit_float">0</reg> -->
+    <!-- <reg type="hr" index="58" label="sensor-tr_sec" dt="64bit_float">0</reg> -->
+    <!-- <reg type="hr" index="62" label="sensor-branch_1" dt="64bit_float">0</reg> -->
+    
+
 
     <code>mosaikrtu/conf/rtu_logic_good.py</code>
 </DVCD>

@@ -3,19 +3,8 @@
 #empty_field	(empty)
 #unset_field	-
 #path	dns
-#open	2018-01-30-08-48-55
+#open	2018-05-28-10-42-17
 #fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	trans_id	rtt	query	qclass	qclass_name	qtype	qtype_name	rcode	rcode_name	AA	TC	RD	RA	Z	answers	TTLs	rejected
 #types	time	string	addr	port	addr	port	enum	count	interval	string	count	string	count	string	count	string	bool	bool	bool	bool	count	vector[string]	vector[interval]	bool
-1517298525.088060	Ct7USc1TTuLgpEKKej	fe80::a00:27ff:fe51:1112	5353	ff02::fb	5353	udp	0	-	_ipps._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F
-1517298525.088065	Ct7USc1TTuLgpEKKej	fe80::a00:27ff:fe51:1112	5353	ff02::fb	5353	udp	0	-	_ipps._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F
-1517298525.088146	CvrYBlKfWwq6TPuz3	192.168.33.10	5353	224.0.0.251	5353	udp	0	-	_ipps._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F
-1517298525.088148	CvrYBlKfWwq6TPuz3	192.168.33.10	5353	224.0.0.251	5353	udp	0	-	_ipps._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F
-1517298589.058946	CUzvOR25cZOo7nahD	fe80::a00:27ff:fe51:1112	5353	ff02::fb	5353	udp	0	-	_ipps._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F
-1517298589.058949	CUzvOR25cZOo7nahD	fe80::a00:27ff:fe51:1112	5353	ff02::fb	5353	udp	0	-	_ipps._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F
-1517298589.059035	C87bFDMINWTt24H5	192.168.33.10	5353	224.0.0.251	5353	udp	0	-	_ipps._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F
-1517298589.059037	C87bFDMINWTt24H5	192.168.33.10	5353	224.0.0.251	5353	udp	0	-	_ipps._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F
-1517298717.063866	CztxKVsebNS18b9h9	fe80::a00:27ff:fe51:1112	5353	ff02::fb	5353	udp	0	-	_ipps._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F
-1517298717.063869	CztxKVsebNS18b9h9	fe80::a00:27ff:fe51:1112	5353	ff02::fb	5353	udp	0	-	_ipps._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F
-1517298717.063956	Cfd2yG3v5IzZCU17fj	192.168.33.10	5353	224.0.0.251	5353	udp	0	-	_ipps._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F
-1517298717.063958	Cfd2yG3v5IzZCU17fj	192.168.33.10	5353	224.0.0.251	5353	udp	0	-	_ipps._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F
-#close	2018-01-30-08-55-53
+1527496927.251461	ClhWJLWZSdm9gpN91	192.168.33.1	5353	224.0.0.251	5353	udp	0	-	_raop._tcp.local	1	C_INTERNET	12	PTR	-	-	F	F	F	F	0	-	-	F
+#close	2018-05-28-10-44-18

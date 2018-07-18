@@ -97,7 +97,7 @@ def main():
     world = mosaik.World(sim_config, {'start_timeout': 30})
     create_scenario(world)
 
-    if RT_FACTOR == 1:
+    if RT_FACTOR == 0:
         world.run(until=END)
     else:
         world.run(until=END, rt_factor=RT_FACTOR)  # As fast as possilb
@@ -121,7 +121,7 @@ def create_scenario(world):
     houses = hhsim.ResidentialLoads(sim_start=START,
                                     profile_file=PROFILE_FILE, # file with household profiles
                                     grid_name=GRID_NAME).children
-    pvs = pvsim.PV.create(0)
+    pvs = pvsim.PV.create(5)
     if not GEN_DATA == None:
         gens = gensim.ResidentialLoads(sim_start=START,
                                         profile_file=GEN_DATA,  # file with generators profiles
@@ -196,8 +196,8 @@ def create_scenario(world):
             'attr': 'Vm',
             'unit': 'U [V]',
             'default': 10000,
-            'min': 0.99 * 10000,
-            'max': 1.01 * 10000,
+            'min': 0.9 * 10000,
+            'max': 1.1 * 10000,
         },
     })
 

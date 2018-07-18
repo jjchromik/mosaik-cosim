@@ -190,7 +190,7 @@ class PyPower(mosaik_api.Simulator):
         for ppc in self._ppcs:
             model.reset_inputs(ppc)
         if 'PyPower' in inputs:
-            if 'switchstates' in inputs['PyPower'].keys():
+            if 'switchstates' in inputs['PyPower'].keys():   # sid: PyPower-0%    grideid: 0-grid
                 self.rtu_info = inputs['PyPower']['switchstates']['RTUSim-0.0-rtu']
                 if recordtimes == 1:
                     myCsvRow = "{};{};{}\n".format("TOPOLOGY-API", "change of switchstates.... refreshing the topology",

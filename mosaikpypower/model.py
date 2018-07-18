@@ -444,6 +444,11 @@ def topology_refresh(ref_topology, rtu_info=""):
                 if branch in b:  # b is a list
                     if b[-1] != rtu_info[branch]:
                         b[-1] = rtu_info[branch]
+            for t in data['trafo']:
+                # print(rtu_info[branch])
+                if branch in t: 
+                    if t[-1] != rtu_info[branch]:
+                        t[-1] = rtu_info[branch]
     conn = connected_buses(data, 'tr_pri')
     for n in data['bus']:
         if n[0] not in conn:

@@ -3,9 +3,9 @@
 #empty_field	(empty)
 #unset_field	-
 #path	reporter
-#open	2018-02-08-16-12-16
+#open	2018-07-18-11-46-34
 #fields	ts	level	message	location
 #types	time	enum	string	string
 0.000000	Reporter::INFO	received termination signal	(empty)
 0.000000	Reporter::INFO	0 packets received on interface vboxnet0, 0 dropped	(empty)
-#close	2018-02-08-16-12-16
+#close	2018-07-18-11-46-34

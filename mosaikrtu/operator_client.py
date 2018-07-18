@@ -6,7 +6,7 @@ from simpy.io.http import Client
 class operator_client(threading.Thread):
 
     """
-    Client for cimmunication with the operator tools server.
+    Client for communication with the operator tools server.
     """
 
     def __init__(self):
