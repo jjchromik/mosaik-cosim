@@ -10,6 +10,5 @@ To start the system you have to:
 4. `startMosaik.sh` is a bash script that activates the virtualenv of Mosaik and starts the GUI for the topology loader. You can specify which topology you want to use. 
 5. `startBro.sh` is a bash script that runs the monitoring tool and listens on interface `vboxnet0` with policies from `monitoring/RTU_3.bro`
 
-The framework consists of Mosaik simulators (directories beginning with mosaik*), the data with topologies (data), the data for monitoring (monitoring), and parts that enable choosing the topology (operator tools, topology loader).
+The framework consists of Mosaik simulators (directories beginning with mosaik*), the data with topologies (data), the data for monitoring (monitoring), and parts that enable choosing the topology (topology loader).
 
-   

@@ -15,10 +15,11 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
-recordtimes=1
+global RECORD_TIMES
+RECORD_TIMES = 1 
 
 try:
-    os.remove('readings.csv')
+    os.remove('./outputs/readings.csv')
 except OSError:
     pass
 
@@ -109,7 +110,7 @@ class MonitoringRTU(mosaik_api.Simulator):
             if 'switch' in s or 'transformer' in s:
                 if self.data.get(v['reg_type'], v['index'], 1)[0] != v['value']: # TODO: operation on datablock!
                     myCsvRow = "{};{};state;{}\n".format(format(datetime.now()),  v['reg_type']+str(v['index']), v['value'])
-                    fd = open('readings.csv', 'a')
+                    fd = open('./outputs/readings.csv', 'a')
                     fd.write(myCsvRow)
                     fd.close()
                     self._cache[s]['value'] = self.data.get(v['reg_type'], v['index'], 1)[0]
@@ -137,12 +138,12 @@ class MonitoringRTU(mosaik_api.Simulator):
                             #print("Stuff in data.set: {} {} {} {}".format(self.conf['registers'][dev_id][0], self.conf['registers'][dev_id][1], value, self.conf['registers'][dev_id][2]))
                             self.data.set(self.conf['registers'][dev_id][0], self.conf['registers'][dev_id][1], value, self.conf['registers'][dev_id][2])
                             myCsvRow = "{};{};{};{}\n".format(format(datetime.now()), dev_id, attr, value)
-                            fd = open('readings.csv', 'a')
+                            fd = open('./outputs/readings.csv', 'a')
                             fd.write(myCsvRow)
                             fd.close()
-        if bool(switchstates) and recordtimes == 1:
+        if bool(switchstates) and RECORD_TIMES == 1:
             myCsvRow = "{};{};{}\n".format("RTU-API", "Pass the commands to TOPOLOGY", format(datetime.now()))
-            fd = open('/Users/chromikjj/Code/mosaik-demo-integrated/times.csv', 'a')
+            fd = open('./outputs/times.csv', 'a')
             fd.write(myCsvRow)
             fd.close()
         yield self.mosaik.set_data(commands)

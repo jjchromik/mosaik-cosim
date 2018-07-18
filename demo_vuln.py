@@ -32,19 +32,13 @@ sim_config = {
     },
     'WebVis': {
 #        'cmd': 'mosaik-web -s 0.0.0.0:8000 %(addr)s',
-        #'cmd': 'mosaik-web %(addr)s',
         'cmd': 'mosaik-web/mosaik-web.sh %(addr)s',
-        #'python': 'mosaik-web.mosaik_web.mosaik:main',  #mosaik_web.mosaik:main
     },
-   # 'TopologySim': {
-   #     'python': 'mosaiktopology.topology:TopologySim',# %(addr)s',  #mosaik_topology.mosaik:Topology
-   # },
     'RTUSim': {
         'python': 'mosaikrtu.rtu:MonitoringRTU',# %(addr)s',  #mosaik_topology.mosaik:Topology
     },
 }
 
-recordtimes = 1
 demo_nr = 1
 
 
@@ -58,11 +52,6 @@ logger = logging.getLogger('demo_main')
 #ch.setFormatter(formatter)
 #logger.addHandler(ch)
 
-if recordtimes == 1 :
-    try:
-        os.remove('/Users/chromikjj/Code/mosaik-demo-integrated/times.csv')
-    except OSError:
-        pass
 
 def main():
     topoloader = topology_loader()
@@ -91,7 +80,14 @@ def main():
     RTU_FILE = os.path.join("data", conf['rtu_file'])
     global RTU_STATS_OUTPUT
     RTU_STATS_OUTPUT = conf['rtu_stats_output']
+    global RECORD_TIMES
+    RECORD_TIMES = 1  # TODO read it from GUI
 
+    if RECORD_TIMES == 1 :
+        try:
+            os.remove('./outputs/times.csv')
+        except OSError:
+            pass
     random.seed(23)
     start_time = time.time()
     world = mosaik.World(sim_config, {'start_timeout': 30})
@@ -107,7 +103,7 @@ def main():
 def create_scenario(world):
     # Start simulators
     pypower = world.start('PyPower', step_size=60)
-    hhsim = world.start('HouseholdSim')
+    hhsim = world.start('HouseholdSim')  # Household simulators have by default the step size of 15 minutes. 
     pvsim = world.start('CSV', sim_start=START, datafile=PV_DATA)
     if not GEN_DATA == None:
         gensim = world.start('HouseholdSim')
@@ -116,7 +112,6 @@ def create_scenario(world):
 
     # Instantiate models
     grid_inf = pypower.Grid(gridfile=GRID_FILE)
-    #topology = toposim.TopologyModel()
     grid = grid_inf.children
     houses = hhsim.ResidentialLoads(sim_start=START,
                                     profile_file=PROFILE_FILE, # file with household profiles
@@ -148,12 +143,9 @@ def create_scenario(world):
     if not GEN_DATA == None:
         connect_many_to_one(world, gens, hdf5, 'P_out')
 
-    # TODO: get the house h_11 and make the PV panel not connect to this particular house?
-
 
     logger.warning("Connecting sensors to grid...")
     connect_sensors_to_grid(world, rtu, grid)
-
 
 
     world.connect(grid_inf, rtu_sim, 'switchstates',  async_requests=True)

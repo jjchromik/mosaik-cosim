@@ -11,8 +11,9 @@ import mosaik_api
 from mosaikpypower import model
 from datetime import datetime
 
-recordtimes = 1
 
+global RECORD_TIMES
+RECORD_TIMES = 1 
 
 logger = logging.getLogger('pypower.mosaik')
 
@@ -111,7 +112,6 @@ class PyPower(mosaik_api.Simulator):
         self.gridfile = None
         self.newgrid = None
         self.grideid = None  #self.eid = None
-        #topo
         self.sid=None
         self.rtu_info=None
 
@@ -192,18 +192,18 @@ class PyPower(mosaik_api.Simulator):
         if 'PyPower' in inputs:
             if 'switchstates' in inputs['PyPower'].keys():   # sid: PyPower-0%    grideid: 0-grid
                 self.rtu_info = inputs['PyPower']['switchstates']['RTUSim-0.0-rtu']
-                if recordtimes == 1:
+                if RECORD_TIMES == 1:
                     myCsvRow = "{};{};{}\n".format("TOPOLOGY-API", "change of switchstates.... refreshing the topology",
                                                       format(datetime.now()))
-                    fd = open('/Users/chromikjj/Code/mosaik-demo-integrated/times.csv', 'a')
+                    fd = open('./outputs/times.csv', 'a')
                     fd.write(myCsvRow)
                     fd.close()
                 self.newgrid = model.topology_refresh(self.newgrid, self.rtu_info)
                 grids =[]
-                if recordtimes == 1:
+                if RECORD_TIMES == 1:
                     myCsvRow = "{};{};{}\n".format("PYPOWER-API", "New topology received...",
                                                       format(datetime.now()))
-                    fd = open('/Users/chromikjj/Code/mosaik-demo-integrated/times.csv', 'a')
+                    fd = open('./outputs/times.csv', 'a')
                     fd.write(myCsvRow)
                     fd.close()
                 grid_idx = 0
@@ -261,9 +261,9 @@ class PyPower(mosaik_api.Simulator):
         res = []
         for ppc in self._ppcs:
             res.append(model.perform_powerflow(ppc))
-        if recordtimes == 1:
+        if RECORD_TIMES == 1:
             myCsvRow = "{};{};{}\n".format("PYPOWER-API", "Recalculated power flow equations", format(datetime.now()))
-            fd = open('/Users/chromikjj/Code/mosaik-demo-integrated/times.csv', 'a')
+            fd = open('./outputs/times.csv', 'a')
             fd.write(myCsvRow)
             fd.close()
         self._cache = model.get_cache_entries(res, self._entities) #cases, entity map
