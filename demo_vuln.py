@@ -13,6 +13,7 @@ from mosaik.util import connect_randomly, connect_many_to_one
 import mosaik
 import os
 from topology_loader.topology_loader import topology_loader
+from distutils.util import strtobool
 
 
 sim_config = {
@@ -46,11 +47,11 @@ demo_nr = 1
 
 # Logging settings
 logger = logging.getLogger('demo_main')
-#ch = logging.StreamHandler()
-#ch.setLevel(logging.DEBUG)
-#formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-#ch.setFormatter(formatter)
-#logger.addHandler(ch)
+# ch = logging.StreamHandler()
+# ch.setLevel(logging.WARNING)
+# formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+# ch.setFormatter(formatter)
+# logger.addHandler(ch)
 
 
 def main():
@@ -79,9 +80,9 @@ def main():
     global RTU_FILE
     RTU_FILE = os.path.join("data", conf['rtu_file'])
     global RTU_STATS_OUTPUT
-    RTU_STATS_OUTPUT = conf['rtu_stats_output']
+    RTU_STATS_OUTPUT = bool(strtobool(conf['rtu_stats_output'].lower()))
     global RECORD_TIMES
-    RECORD_TIMES = conf['recordtimes']  # TODO read it from GUI
+    RECORD_TIMES = bool(strtobool(conf['recordtimes'].lower()))  # TODO read it from GUI
 
     if RECORD_TIMES :
         try:

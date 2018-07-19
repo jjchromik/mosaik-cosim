@@ -12,3 +12,4 @@ To start the system you have to:
 
 The framework consists of Mosaik simulators (directories beginning with mosaik*), the data with topologies (data), the data for monitoring (monitoring), and parts that enable choosing the topology (topology loader).
 
+When installing pymodbus3 library, use: https://github.com/jjchromik/pymodbus3 - it has got two changes than the original github, and they otherwise result in error in the project.

@@ -3,7 +3,7 @@ import time
 import logging
 logging.basicConfig()
 log = logging.getLogger()
-log.setLevel(logging.DEBUG)
+log.setLevel(logging.WARNING)
 
 class Worker(threading.Thread):
     """

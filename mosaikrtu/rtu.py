@@ -14,9 +14,8 @@ ch.setLevel(logging.WARN)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 ch.setFormatter(formatter)
 logger.addHandler(ch)
-
-global RECORD_TIMES
-RECORD_TIMES = 0
+from topology_loader.topology_loader import topology_loader
+from distutils.util import strtobool
 
 try:
     os.remove('./outputs/readings.csv')
@@ -58,6 +57,12 @@ class MonitoringRTU(mosaik_api.Simulator):
         self._cache = {} 
         self.worker=""
         self.server=""
+        topoloader = topology_loader()
+        conf = topoloader.get_config()
+        global RECORD_TIMES
+        RECORD_TIMES = bool(strtobool(conf['recordtimes'].lower()))
+        global RTU_STATS_OUTPUT
+        RTU_STATS_OUTPUT = bool(strtobool(conf['rtu_stats_output'].lower()))
 
     def init(self, sid):
         self.sid = sid
@@ -109,10 +114,11 @@ class MonitoringRTU(mosaik_api.Simulator):
         for s, v in self._cache.items():
             if 'switch' in s or 'transformer' in s:
                 if self.data.get(v['reg_type'], v['index'], 1)[0] != v['value']: # TODO: operation on datablock!
-                    myCsvRow = "{};{};state;{}\n".format(format(datetime.now()),  v['reg_type']+str(v['index']), v['value'])
-                    fd = open('./outputs/readings.csv', 'a')
-                    fd.write(myCsvRow)
-                    fd.close()
+                    if RTU_STATS_OUTPUT: 
+                        myCsvRow = "{};{};state;{}\n".format(format(datetime.now()),  v['reg_type']+str(v['index']), v['value'])
+                        fd = open('./outputs/readings.csv', 'a')
+                        fd.write(myCsvRow)
+                        fd.close()
                     self._cache[s]['value'] = self.data.get(v['reg_type'], v['index'], 1)[0]
                     switchstates[v['place']] = v['value']
 
@@ -137,11 +143,12 @@ class MonitoringRTU(mosaik_api.Simulator):
                             # logger.warning("Sensor {} value changed to {} ".format(dev_id, value))
                             #print("Stuff in data.set: {} {} {} {}".format(self.conf['registers'][dev_id][0], self.conf['registers'][dev_id][1], value, self.conf['registers'][dev_id][2]))
                             self.data.set(self.conf['registers'][dev_id][0], self.conf['registers'][dev_id][1], value, self.conf['registers'][dev_id][2])
-                            myCsvRow = "{};{};{};{}\n".format(format(datetime.now()), dev_id, attr, value)
-                            fd = open('./outputs/readings.csv', 'a')
-                            fd.write(myCsvRow)
-                            fd.close()
-        if bool(switchstates) and RECORD_TIMES == 1:
+                            if RTU_STATS_OUTPUT:
+                                myCsvRow = "{};{};{};{}\n".format(format(datetime.now()), dev_id, attr, value)
+                                fd = open('./outputs/readings.csv', 'a')
+                                fd.write(myCsvRow)
+                                fd.close()
+        if bool(switchstates) and RECORD_TIMES:
             myCsvRow = "{};{};{}\n".format("RTU-API", "Pass the commands to TOPOLOGY", format(datetime.now()))
             fd = open('./outputs/times.csv', 'a')
             fd.write(myCsvRow)
