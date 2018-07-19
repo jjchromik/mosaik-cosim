@@ -100,14 +100,17 @@ class loader_gui(tk.Frame):
         Sets the simulation configuration of real-time factor and wheter to output the sensor data in the loader.
         """
         rt_factor = 1/int(self.input_rt_factor.get())
-        # print(rt_factor)
         get_stats = self.check_stats_selection.get()
+        get_times = self.check_times_selection.get()
         if get_stats == 1:
             get_stats = True
         else:
             get_stats = False
-        # print(get_stats)
-        self.loader.set_sim_conf(str(rt_factor), str(get_stats))
+        if get_times == 1:
+            get_times = True
+        else:
+            get_times = False
+        self.loader.set_sim_conf(str(rt_factor), str(get_stats), str(get_times))
 
 if __name__ == "__main__":
     app = loader_gui(tk.Tk())

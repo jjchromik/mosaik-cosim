@@ -3,8 +3,11 @@
 #empty_field	(empty)
 #unset_field	-
 #path	conn
-#open	2018-07-18-17-01-37
+#open	2018-07-19-13-33-53
 #fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	service	duration	orig_bytes	resp_bytes	conn_state	local_orig	local_resp	missed_bytes	history	orig_pkts	orig_ip_bytes	resp_pkts	resp_ip_bytes	tunnel_parents
 #types	time	string	addr	port	addr	port	enum	string	interval	count	count	string	bool	bool	count	string	count	count	count	count	set[string]
-1531926085.197401	CNU2684r1m5UaEsoH5	192.168.33.10	54117	192.168.33.1	10502	tcp	modbus	11.091681	420	846	RSTR	-	-	0	ShAaDdfr	60	3548	72	4590	(empty)
-#close	2018-07-18-17-01-37
+1531999952.933982	CTypjt4qrm5mU93Ry5	192.168.33.10	40129	192.168.33.1	10502	tcp	modbus	79.712741	2868	6063	S1	-	-	0	ShAaDd	400	23676	480	31035	(empty)
+1531999969.938434	C3R3601FxekYDTPxJ4	192.168.33.10	39391	192.168.33.1	10502	tcp	modbus	57.093097	180	184	S1	-	-	0	ShAaDd	26	1540	26	1548	(empty)
+1531999961.817682	CQwAVT2b0oUt2laNMe	192.168.33.1	57621	192.168.33.255	57621	udp	-	60.009912	132	0	S0	-	-	0	D	3	216	0	0	(empty)
+1531999947.568279	Cb95gA2GlBpDiaXRI8	192.168.33.1	17500	192.168.33.255	17500	udp	-	60.094815	573	0	S0	-	-	0	D	3	657	0	0	(empty)
+#close	2018-07-19-13-33-53

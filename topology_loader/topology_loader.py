@@ -18,7 +18,7 @@ class topology_loader(threading.Thread):
         self.conf_file_name = "config.cfg"
         self.rt_factor = 0.0
         self.output_rtu_stats = None
-        self.recordtimes = 'False'
+        self.recordtimes = None
 
     def run(self):
         """
@@ -69,6 +69,7 @@ class topology_loader(threading.Thread):
             conf['profile_file'] = os.path.join(dir, conf['profile_file'])
             conf['rtu_file'] = os.path.join(dir, conf['rtu_file'])
             conf['attack_script'] = os.path.join(dir, conf['attack_script'])
+            conf['bro_policies'] = os.path.join(dir, conf['bro_policies'])
             conf['rt_factor'] = self.rt_factor
             conf['rtu_stats_output'] = self.output_rtu_stats
             conf['recordtimes'] = self.recordtimes
@@ -102,7 +103,7 @@ class topology_loader(threading.Thread):
                         res.append(d)
         return res
 
-    def set_sim_conf(self, rt_factor, stats):
+    def set_sim_conf(self, rt_factor, stats, times):
         """
         Sets the simulation configuration of real-time factor and wheter to output the sensor data.
         :param rt_factor: real-time factor
@@ -110,6 +111,7 @@ class topology_loader(threading.Thread):
         """
         self.rt_factor = rt_factor
         self.output_rtu_stats = stats
+        self.recordtimes = times
 
 if __name__ == "__main__":
     tl = topology_loader()

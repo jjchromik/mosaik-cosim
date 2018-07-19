@@ -3,6 +3,7 @@
 **/*.pyc
 *.ropeproject
 *~
+*.log
 .DS_Store
 .coverage
 MANIFEST

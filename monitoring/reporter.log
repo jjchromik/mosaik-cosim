@@ -3,9 +3,9 @@
 #empty_field	(empty)
 #unset_field	-
 #path	reporter
-#open	2018-07-18-17-01-37
+#open	2018-07-19-13-33-53
 #fields	ts	level	message	location
 #types	time	enum	string	string
-1531926097.765262	Reporter::INFO	received termination signal	(empty)
-1531926097.765262	Reporter::INFO	134 packets received on interface vboxnet0, 0 dropped	(empty)
-#close	2018-07-18-17-01-37
+1532000032.646723	Reporter::INFO	received termination signal	(empty)
+1532000032.646723	Reporter::INFO	938 packets received on interface vboxnet0, 0 dropped	(empty)
+#close	2018-07-19-13-33-53
