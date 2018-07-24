@@ -4,6 +4,7 @@
 *.ropeproject
 *~
 *.log
+**/*.log
 .DS_Store
 .coverage
 MANIFEST
@@ -12,4 +13,6 @@ docs/_build/*
 htmlcov/*
 readings.csv
 times.csv
-
+data/basic_stable/
+data/24_bus/
+data/IEEE_benchmark_to_add/
