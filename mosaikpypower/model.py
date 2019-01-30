@@ -18,6 +18,7 @@ import xlrd
 
 from mosaik_pypower import resource_db as rdb
 
+logfile = './outputs/times.csv'
 
 # The line params that we read are for 1 of 3 wires within a cable,
 # but the loads and feed-in is meant for the complete cable, so we
@@ -435,24 +436,21 @@ TOPOLOGY related classes and functions
 # rtu_info is a dict of the branch name and "True" or "False" indicator, e.g. {"branch_1: 1. branch_16: 0"}
 
 def topology_refresh(ref_topology, rtu_info=""):
-#    newtopology = ""  # string
     if rtu_info:
         with open(ref_topology) as ref_topology_file:
             data = json.load(ref_topology_file)
         for branch in rtu_info.keys():
             for b in data['branch']:
-                if branch in b:  # b is a list
+                if branch in b: 
                     if b[-1] != rtu_info[branch]:
                         b[-1] = rtu_info[branch]
             for t in data['trafo']:
-                # print(rtu_info[branch])
                 if branch in t: 
                     if t[-1] != rtu_info[branch]:
                         t[-1] = rtu_info[branch]
     conn = connected_buses(data, 'tr_pri')
     for n in data['bus']:
         if n[0] not in conn:
-            # print("Disconnect bus {}".format(n[0]))
             if n[1] != 'NONE':
                 n[1] = 'NONE'
         else:
@@ -571,3 +569,16 @@ class Graph(object):
 
     def clear(self):
         self.__graph_dict = {}
+
+
+## Logging function ##
+def log_event(event):
+    if event == "PFE": 
+        myCsvRow = "{};{};{}\n".format("PYPOWER-API", "Recalculated power flow equations", format(datetime.now()))
+    if event == "NT":
+        myCsvRow = "{};{};{}\n".format("PYPOWER-API", "New topology received.", format(datetime.now()))
+    if event == "NC":
+        myCsvRow = "{};{};{}\n".format("PYPOWER-API", "New command. Refresh topology.", format(datetime.now()))
+    fd = open(logfile, 'a')
+    fd.write(myCsvRow)
+    fd.close()

@@ -166,7 +166,7 @@
             "node_b18",
             "type_1",
             0.15,
-            true
+            false
         ],
         [
             "branch_26",
@@ -254,7 +254,7 @@
             "node_b5",
             "type_1",
             0.2,
-            true
+            false
         ]
     ],
     "branch_types": {
@@ -358,57 +358,57 @@
         ],
         [
             "node_b18",
-            "PQ",
+            "NONE",
             10.0
         ],
         [
             "node_b19",
-            "PQ",
+            "NONE",
             10.0
         ],
         [
             "node_b20",
-            "PQ",
+            "NONE",
             10.0
         ],
         [
             "node_b21",
-            "PQ",
+            "NONE",
             10.0
         ],
         [
             "node_b22",
-            "PQ",
+            "NONE",
             10.0
         ],
         [
             "node_b23",
-            "PQ",
+            "NONE",
             10.0
         ],
         [
             "node_b24",
-            "PQ",
+            "NONE",
             10.0
         ],
         [
             "node_b25",
-            "PQ",
+            "NONE",
             10.0
         ],
         [
             "node_b26",
-            "PQ",
+            "NONE",
             10.0
         ],
         [
             "node_b27",
-            "PQ",
+            "NONE",
             10.0
         ],
         [
             "node_b28",
-            "PQ",
+            "NONE",
             10.0
         ]
     ],

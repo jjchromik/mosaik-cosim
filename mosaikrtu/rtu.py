@@ -115,18 +115,19 @@ class MonitoringRTU(mosaik_api.Simulator):
             if 'switch' in s or 'transformer' in s:
                 if self.data.get(v['reg_type'], v['index'], 1)[0] != v['value']: # TODO: operation on datablock!
                     if RTU_STATS_OUTPUT: 
-                        myCsvRow = "{};{};state;{}\n".format(format(datetime.now()),  v['reg_type']+str(v['index']), v['value'])
-                        fd = open('./outputs/readings.csv', 'a')
-                        fd.write(myCsvRow)
-                        fd.close()
+                        rtu_model.save_readings(v['reg_type']+str(v['index']), "state", v['value'])
                     self._cache[s]['value'] = self.data.get(v['reg_type'], v['index'], 1)[0]
                     switchstates[v['place']] = v['value']
+                    if commands[src][dest] == {}:
+                        commands[src][dest]['switchstates'] = switchstates
+                    else:
+                        commands[src][dest]['switchstates'].update(switchstates)
 
-        if bool(switchstates):
-            if commands[src][dest] == {}:
-                commands[src][dest]['switchstates'] = switchstates
-            else:
-                commands[src][dest]['switchstates'].update(switchstates)
+        # if bool(switchstates):
+        #     if commands[src][dest] == {}:
+        #         commands[src][dest]['switchstates'] = switchstates
+        #     else:
+        #         commands[src][dest]['switchstates'].update(switchstates)
 
         for eid, data in inputs.items():
             for attr, values in data.items(): # attr is like I_real etc.
@@ -144,15 +145,9 @@ class MonitoringRTU(mosaik_api.Simulator):
                             #print("Stuff in data.set: {} {} {} {}".format(self.conf['registers'][dev_id][0], self.conf['registers'][dev_id][1], value, self.conf['registers'][dev_id][2]))
                             self.data.set(self.conf['registers'][dev_id][0], self.conf['registers'][dev_id][1], value, self.conf['registers'][dev_id][2])
                             if RTU_STATS_OUTPUT:
-                                myCsvRow = "{};{};{};{}\n".format(format(datetime.now()), dev_id, attr, value)
-                                fd = open('./outputs/readings.csv', 'a')
-                                fd.write(myCsvRow)
-                                fd.close()
+                                rtu_model.save_readings(dev_id, attr, value)
         if bool(switchstates) and RECORD_TIMES:
-            myCsvRow = "{};{};{}\n".format("RTU-API", "Pass the commands to TOPOLOGY", format(datetime.now()))
-            fd = open('./outputs/times.csv', 'a')
-            fd.write(myCsvRow)
-            fd.close()
+            rtu_model.log_event("NC")
         yield self.mosaik.set_data(commands)
         return time + 60
 

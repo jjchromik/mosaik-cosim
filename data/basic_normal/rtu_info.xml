@@ -29,7 +29,12 @@
     <reg type="hr" index="40" label="max-branch_25" dt="64bit_float">0.5</reg>
     <reg type="hr" index="44" label="max-branch_36" dt="64bit_float">0.5</reg>
 
-    <reg type="hr" index="50" label="tap-transformer_1" dt="64bit_float">0</reg>
+    <reg type="hr" index="48" label="max-node_b5" dt="64bit_float">10</reg>
+    <reg type="hr" index="52" label="max-node_b5" dt="64bit_float">10</reg>
+    <reg type="hr" index="56" label="max-node_b5" dt="64bit_float">10</reg>
+    <reg type="hr" index="60" label="max-node_b5" dt="64bit_float">10</reg>
+
+    <reg type="hr" index="64" label="tap-transformer_1" dt="64bit_float">0</reg>
 
     <code>mosaikrtu/conf/rtu_logic_good.py</code>
 </DVCD>

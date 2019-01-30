@@ -10,8 +10,14 @@ from mosaikrtu.dvcd.data import DataBlock
 from mosaikrtu.dvcd.server import Server
 from mosaikrtu.dvcd.worker import Worker
 import struct
+from datetime import datetime
+
 
 import socket
+
+readingfile = './outputs/readings.csv'
+logfile = './outputs/times.csv'
+
 
 
 def create_datablock(conf): # changes : to include the datatype of the data.
@@ -200,3 +206,16 @@ def make_eid(name, grid_idx):
 
 
 #this class needs to be the connection to the pymodbus thingie. 
+## Logging function ##
+def log_event(event):
+    if event == "NC": 
+        myCsvRow = "{};{};{}\n".format("RTU-API", "Pass the commands to TOPOLOGY", format(datetime.now()))
+    fd = open(logfile, 'a')
+    fd.write(myCsvRow)
+    fd.close()
+
+def save_readings(dev_id, attr, value):
+    myCsvRow = "{};{};{};{}\n".format(format(datetime.now()), dev_id, attr, value)
+    fd = open(readingfile, 'a')
+    fd.write(myCsvRow)
+    fd.close()

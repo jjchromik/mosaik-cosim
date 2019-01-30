@@ -190,27 +190,33 @@ class PyPower(mosaik_api.Simulator):
             })
         return grids
 
-    def step(self, time, inputs): 
+    def step(self, time, inputs): #inputs keys are eg '0-node_b24', '0-node_b14'
         for ppc in self._ppcs:
             model.reset_inputs(ppc)
-
-        # First change the topology
         if 'PyPower' in inputs:
             if 'switchstates' in inputs['PyPower'].keys():   # sid: PyPower-0%    grideid: 0-grid
-                self.rtu_info = list(inputs['PyPower']['switchstates'].values())[0] #['RTUSim-0.0-rtu']
+                self.rtu_info = inputs['PyPower']['switchstates']['RTUSim-0.0-rtu']
                 if RECORD_TIMES:
-                    model.log_event("NC")
+                    myCsvRow = "{};{};{}\n".format("TOPOLOGY-API", "change of switchstates.... refreshing the topology",
+                                                      format(datetime.now()))
+                    fd = open('./outputs/times.csv', 'a')
+                    fd.write(myCsvRow)
+                    fd.close()
                 self.newgrid = model.topology_refresh(self.newgrid, self.rtu_info)
-                if RECORD_TIMES:
-                    model.log_event("NT")
-
-                #Create new entities from the new topology
                 grids =[]
+                if RECORD_TIMES:
+                    myCsvRow = "{};{};{}\n".format("PYPOWER-API", "New topology received...",
+                                                      format(datetime.now()))
+                    fd = open('./outputs/times.csv', 'a')
+                    fd.write(myCsvRow)
+                    fd.close()
                 grid_idx = 0
                 sheetnames = {}
+                #print("################\nself._entities OLD: \n\n{}\n################\n################\n".format(self._entities))
                 self._entities = {}
                 self._ppcs = []
                 ppc, entities = model.load_case(self.newgrid, grid_idx, sheetnames)
+                #print("################\nEntities NEW: \n\n{}\n################\n################\n".format(entities))
                 self._ppcs.append(ppc)
                 for ppc in self._ppcs:
                     model.reset_inputs(ppc)
@@ -218,6 +224,7 @@ class PyPower(mosaik_api.Simulator):
                 for eid, attrs in sorted(entities.items()):
                     assert eid not in self._entities # problem?
                     self._entities[eid] = attrs
+
                     # We'll only add relations from branches to nodes (and not from
                     # nodes to branches) because this is sufficient for mosaik to
                     # build the entity graph.
@@ -237,8 +244,8 @@ class PyPower(mosaik_api.Simulator):
                     'rel': [],
                     'children': children,
                 })
+                #print("################\nself._entities NEW: \n\n{}\n################\n################\n".format(entities))
 
-        # Update all the entities (except for the new command input)
         for eid, attrs in inputs.items():
             if 'PyPower' in eid:
                 continue
@@ -255,12 +262,14 @@ class PyPower(mosaik_api.Simulator):
                         attrs[name] *= self.pos_loads
                 model.set_inputs(ppc, etype, idx, attrs, static)
 
-        # Perform power flow equations
         res = []
         for ppc in self._ppcs:
             res.append(model.perform_powerflow(ppc))
         if RECORD_TIMES:
-            model.log_event("PFE")
+            myCsvRow = "{};{};{}\n".format("PYPOWER-API", "Recalculated power flow equations", format(datetime.now()))
+            fd = open('./outputs/times.csv', 'a')
+            fd.write(myCsvRow)
+            fd.close()
         self._cache = model.get_cache_entries(res, self._entities) #cases, entity map
         return time + self.step_size
 
