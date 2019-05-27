@@ -42,6 +42,8 @@ class MosaikWeb(mosaik_api.Simulator):
     def __init__(self):
         #logger.warning("WebViz: init")
         super().__init__(meta)
+
+        self.start_date = None
         self.step_size = None
         self.server = None
         self.sid = None
@@ -140,8 +142,14 @@ class MosaikWeb(mosaik_api.Simulator):
                                if d['type'] in self.config['ignore_types']])
         for node in [n for n, d in nxg.node.items()
                      if d['type'] in self.config['merge_types']]:
+
+
+
             new_edge = nxg.neighbors(node)
-            assert len(new_edge) == 2, new_edge
+
+              # unroll key iterator
+            new_edge = [key for key in new_edge]
+            assert len((new_edge)) == 2, new_edge
             nxg.remove_node(node)
             nxg.add_edge(*new_edge)
 
