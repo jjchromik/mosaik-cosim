@@ -1,3 +1,5 @@
+Please be aware that some of the used libraries contain some security issues. I will work on addressing them in my spare time, however, I don't promise when this will be done! 
+
 # Framework for locally implemented model-based traffic monitoring implementing Mosaik co-simulation
 
 On high level, the framework consists of the simulated power grid, simulated controller(s) (RTUs), SCADA server and the monitoring tool implementing Bro. 
