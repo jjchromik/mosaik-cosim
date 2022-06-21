@@ -16,7 +16,7 @@ mosaik-householdsim==2.0.2
 mosaik-pypower==0.7.2
 mosaik-web==0.2.1
 networkx==2.1
-numpy==1.10.1
+numpy==1.22.0
 Pillow==5.1.0
 pymodbus3==1.0.0
 PYPOWER==5.1.3
