@@ -26,6 +26,6 @@ scipy==0.16.0
 simpy==3.0.10
 simpy.io==0.2.3
 six==1.11.0
-Twisted==18.4.0
+Twisted==22.10.0
 xlrd==1.1.0
 zope.interface==4.5.0
