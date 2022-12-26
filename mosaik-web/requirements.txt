@@ -15,4 +15,4 @@ simpy==3.0.8
 simpy.io==0.2.2
 six==1.10.0
 twine==1.6.5
-wheel==0.29.0
+wheel==0.38.1
